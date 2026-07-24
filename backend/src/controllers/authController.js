@@ -1,20 +1,16 @@
-import {login} from "../services/authService.js";
+import { login } from "../services/authService.js";
+import asyncHandler from "../utils/asyncHandler.js";
 
-const loginController = async (req,res) => {
-    try{
-        const result = await login(req.body);
+const loginController = asyncHandler(async (req, res) => {
 
-        return res.status(200).json({
-            success:true,
-            message:"Login successful",
-            data:result,
-        });
-    }catch(error){
-        return res.status(401).json({
-            success:false,
-            message:error.message,
-        });
-    }
-}; 
+    const result = await login(req.body);
 
-export {loginController};
+    return res.status(200).json({
+        success: true,
+        message: "Login successful",
+        data: result,
+    });
+
+});
+
+export { loginController };

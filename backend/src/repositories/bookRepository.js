@@ -26,9 +26,23 @@ const getBookById = async (bookId) => {
     return await Book.findById(bookId);
 };
 
+const updateBook = async (bookId, updateData) => {
+
+    return await Book.findByIdAndUpdate(
+        bookId,
+        updateData,
+        {
+            new: true,
+            runValidators: true,
+        }
+    );
+
+};
+
 export {
     createBook,
     getBooks,
     countBooks,
     getBookById,
+    updateBook,
 };

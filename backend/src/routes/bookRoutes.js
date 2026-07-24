@@ -1,6 +1,6 @@
 import express from "express";
 
-import { createBookController, getBooksController, getBookByIdController } from "../controllers/bookController.js";
+import { createBookController, getBooksController, getBookByIdController,updateBookController } from "../controllers/bookController.js";
 
 import { authenticate } from "../middleware/authMiddleware.js";
 import { authorize } from "../middleware/authorizeMiddleware.js";
@@ -16,6 +16,16 @@ router.post(
     authenticate,
     authorize("super-admin", "admin"),
     createBookController
+); 
+
+router.put(
+    "/:id",
+    authenticate,
+    authorize(
+        "super-admin",
+        "admin"
+    ),
+    updateBookController
 );
 
 export default router;

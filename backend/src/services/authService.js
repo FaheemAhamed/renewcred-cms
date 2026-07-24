@@ -6,12 +6,17 @@ import {
     updateLastLogin,
 } from "../repositories/authRepository.js";
 
+import ApiError from "../utils/ApiError.js";
+
 const login = async ({ email, password }) => {
 
     const admin = await findAdminByEmail(email);
 
     if (!admin) {
-        throw new Error("Invalid email or password");
+        throw new ApiError(
+            401,
+            "Invalid email or password"
+        );
     }
 
     const isPasswordValid = await bcrypt.compare(
@@ -20,11 +25,17 @@ const login = async ({ email, password }) => {
     );
 
     if (!isPasswordValid) {
-        throw new Error("Invalid email or password");
+        throw new ApiError(
+            401,
+            "Invalid email or password"
+        );
     }
 
     if (!admin.isActive) {
-        throw new Error("Admin account is inactive");
+        throw new ApiError(
+            403,
+            "Admin account is inactive"
+        );
     }
 
     const token = jwt.sign(

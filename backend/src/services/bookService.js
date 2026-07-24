@@ -3,7 +3,10 @@ import {
     getBooks,
     countBooks,
     getBookById,
+    updateBook,
 } from "../repositories/bookRepository.js";
+
+import ApiError from "../utils/ApiError.js";
 
 const createBookService = async (bookData, adminId) => {
 
@@ -80,21 +83,48 @@ const getBooksService = async ({
             totalPages,
         },
     };
-}; 
+};
 
 const getBookByIdService = async (bookId) => {
 
     const book = await getBookById(bookId);
 
     if (!book) {
-        throw new Error("Book not found");
+        throw new ApiError(
+            404,
+            "Book not found"
+        );
     }
 
     return book;
+};
+
+const updateBookService = async (
+    bookId,
+    updateData
+) => {
+
+    const updatedBook = await updateBook(
+        bookId,
+        updateData
+    );
+
+    if (!updatedBook) {
+
+        throw new ApiError(
+            404,
+            "Book not found"
+        );
+
+    }
+
+    return updatedBook;
+
 };
 
 export {
     createBookService,
     getBooksService,
     getBookByIdService,
+    updateBookService,
 };
