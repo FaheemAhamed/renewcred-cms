@@ -1,6 +1,7 @@
 import express from "express"; 
 import cors from "cors";
 import authRoutes from "./routes/authRoutes.js";
+import bookRoutes from "./routes/bookRoutes.js";
 
 const app = express(); 
 
@@ -14,6 +15,7 @@ app.use(express.json());
 app.use(express.urlencoded({extended:true}));
 
 app.use("/api/v1/auth",authRoutes);
+app.use("/api/v1/books", bookRoutes);
 
 //Health Check Route
 app.get("/",(req,res) =>{

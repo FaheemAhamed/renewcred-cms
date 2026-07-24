@@ -1,6 +1,7 @@
 import express from "express";
 import { loginController } from "../controllers/authController.js";
 import { authenticate } from "../middleware/authMiddleware.js";
+import { authorize } from "../middleware/authorizeMiddleware.js";
 
 const router = express.Router();
 
@@ -13,5 +14,29 @@ router.get("/me", authenticate, (req, res) => {
         admin: req.admin,
     });
 });
+
+router.get(
+    "/super-admin",
+    authenticate,
+    authorize("super-admin"),
+    (req, res) => {
+        res.json({
+            success: true,
+            message: "Welcome Super Admin"
+        });
+    }
+);
+
+router.get(
+    "/admin",
+    authenticate,
+    authorize("super-admin", "admin"),
+    (req, res) => {
+        res.json({
+            success: true,
+            message: "Welcome Admin"
+        });
+    }
+);
 
 export default router;

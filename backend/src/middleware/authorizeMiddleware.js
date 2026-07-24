@@ -1,0 +1,16 @@
+const authorize = (...allowedRoles) => {
+    return (req,res,next) => {
+
+        if(!allowedRoles.includes(req.admin.role)){
+            return res.status(403).json({
+                success:false,
+                message:"Access denied",
+            });
+        } 
+
+        next(); 
+
+    };
+};
+
+export {authorize};
