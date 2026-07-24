@@ -1,1 +1,65 @@
-version: "3.9"
+version: '3.8'
+
+services:
+  # MongoDB Database Service
+  mongo:
+    image: mongo:6.0
+    container_name: renewcred-mongo
+    restart: always
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_DATABASE: renewcred-cms
+    volumes:
+      - mongo_data:/data/db
+
+  # Backend Express API Service
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: renewcred-backend
+    restart: always
+    ports:
+      - "5000:5000"
+    environment:
+      PORT: 5000
+      MONGODB_URI: mongodb://mongo:27017/renewcred-cms
+      JWT_SECRET: f3e7ec4831885fb99a27432e96cc19229d7160d558bf865bb0db99eff1904a8e
+      JWT_EXPIRES_IN: 1d
+      ADMIN_EMAIL: admin@renewcred.com
+      ADMIN_PASSWORD: Admin123
+      ADMIN_USERNAME: Super Admin
+    depends_on:
+      - mongo
+
+  # Admin CMS Next.js Frontend
+  admin:
+    build:
+      context: ./admin
+      dockerfile: Dockerfile
+    container_name: renewcred-admin
+    restart: always
+    ports:
+      - "3000:3000"
+    environment:
+      NEXT_PUBLIC_API_URL: http://localhost:5000/api/v1
+    depends_on:
+      - backend
+
+  # Public Website Next.js Consumer Frontend
+  website:
+    build:
+      context: ./website
+      dockerfile: Dockerfile
+    container_name: renewcred-website
+    restart: always
+    ports:
+      - "3001:3001"
+    environment:
+      NEXT_PUBLIC_API_URL: http://localhost:5000/api/v1
+    depends_on:
+      - backend
+
+volumes:
+  mongo_data:
