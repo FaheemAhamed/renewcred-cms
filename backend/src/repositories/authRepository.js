@@ -15,7 +15,7 @@ const updateLastLogin = async (adminId) => {
             lastLogin: new Date(),
         },
         {
-            new: true,
+            returnDocument: "after",
         }
     );
 };

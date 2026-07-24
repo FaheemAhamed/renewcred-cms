@@ -32,10 +32,16 @@ const updateBook = async (bookId, updateData) => {
         bookId,
         updateData,
         {
-            new: true,
+            returnDocument: "after",
             runValidators: true,
         }
     );
+
+};
+
+const deleteBook = async (bookId) => {
+
+    return await Book.findByIdAndDelete(bookId);
 
 };
 
@@ -45,4 +51,5 @@ export {
     countBooks,
     getBookById,
     updateBook,
+    deleteBook,
 };

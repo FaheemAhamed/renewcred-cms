@@ -3,6 +3,8 @@ import cors from "cors";
 
 import authRoutes from "./routes/authRoutes.js";
 import bookRoutes from "./routes/bookRoutes.js";
+import pageRoutes from "./routes/pageRoutes.js";
+import uploadRoutes from "./routes/uploadRoutes.js";
 import errorMiddleware from "./middleware/errorMiddleware.js";
 
 const app = express();
@@ -19,6 +21,8 @@ app.use(express.urlencoded({ extended: true }));
 // Routes
 app.use("/api/v1/auth", authRoutes);
 app.use("/api/v1/books", bookRoutes);
+app.use("/api/v1/pages", pageRoutes);
+app.use("/api/v1/upload", uploadRoutes);
 
 // Health Check Route
 app.get("/", (req, res) => {

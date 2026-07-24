@@ -56,7 +56,17 @@ const bookSchema = new mongoose.Schema(
             default: "",
         },
 
+        coverImagePublicId: {
+            type: String,
+            default: "",
+        },
+
         pdfUrl: {
+            type: String,
+            default: "",
+        },
+
+        pdfPublicId: {
             type: String,
             default: "",
         },

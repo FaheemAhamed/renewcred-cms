@@ -4,6 +4,7 @@ import {
     countBooks,
     getBookById,
     updateBook,
+    deleteBook,
 } from "../repositories/bookRepository.js";
 
 import ApiError from "../utils/ApiError.js";
@@ -122,9 +123,25 @@ const updateBookService = async (
 
 };
 
+const deleteBookService = async (bookId) => {
+
+    const deletedBook = await deleteBook(bookId);
+
+    if (!deletedBook) {
+        throw new ApiError(
+            404,
+            "Book not found"
+        );
+    }
+
+    return deletedBook;
+
+};
+
 export {
     createBookService,
     getBooksService,
     getBookByIdService,
     updateBookService,
+    deleteBookService,
 };
