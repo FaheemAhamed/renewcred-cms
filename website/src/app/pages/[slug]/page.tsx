@@ -76,7 +76,7 @@ export default function DynamicCMSPage() {
             </Link>
           </div>
         ) : (
-          <BlockRenderer blocks={page.blocks} />
+          <BlockRenderer blocks={page.blocks || (page as any).content || []} />
         )}
       </main>
 

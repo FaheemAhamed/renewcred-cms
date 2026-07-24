@@ -193,12 +193,12 @@ export default function EditBookPage() {
           {/* Price */}
           <div>
             <label className="block text-xs font-bold uppercase tracking-wider text-slate-700">
-              Price ($) *
+              Price (₹ INR) *
             </label>
             <input
               {...register('price')}
               type="number"
-              step="0.01"
+              step="1"
               className="mt-1.5 w-full rounded-xl border border-slate-200 py-2.5 px-3.5 text-xs text-slate-900 focus:border-blue-600 focus:outline-none focus:ring-1 focus:ring-blue-600"
             />
             {errors.price && <p className="mt-1 text-xs text-rose-500">{errors.price.message}</p>}

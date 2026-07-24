@@ -152,10 +152,10 @@ export default function PublicBooksPage() {
 
                   <div className="pt-3 border-t border-slate-100 flex items-center justify-between">
                     <div>
-                      <span className="text-base font-extrabold text-slate-900">${book.price}</span>
+                      <span className="text-base font-extrabold text-slate-900">₹{book.price?.toLocaleString('en-IN')}</span>
                       {book.discountPrice ? (
                         <span className="ml-1 text-[11px] text-slate-400 line-through">
-                          ${book.discountPrice}
+                          ₹{book.discountPrice?.toLocaleString('en-IN')}
                         </span>
                       ) : null}
                     </div>

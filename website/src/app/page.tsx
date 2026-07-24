@@ -58,7 +58,7 @@ export default function HomePage() {
             <Loader2 className="h-8 w-8 animate-spin text-blue-600" />
           </div>
         ) : page ? (
-          <BlockRenderer blocks={page.blocks} />
+          <BlockRenderer blocks={page.blocks || (page as any).content || []} />
         ) : (
           <div className="rounded-2xl border border-slate-200 bg-white p-12 text-center space-y-3">
             <h3 className="text-lg font-bold text-slate-800">Welcome to RenewCred Platform</h3>

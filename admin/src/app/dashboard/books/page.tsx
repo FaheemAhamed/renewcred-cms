@@ -202,10 +202,10 @@ export default function BooksListPage() {
                       </span>
                     </td>
                     <td className="px-6 py-4">
-                      <span className="font-bold text-slate-900">${book.price}</span>
+                      <span className="font-bold text-slate-900">₹{book.price?.toLocaleString('en-IN')}</span>
                       {book.discountPrice && book.discountPrice > 0 ? (
                         <span className="ml-1 text-[10px] text-slate-400 line-through">
-                          ${book.discountPrice}
+                          ₹{book.discountPrice?.toLocaleString('en-IN')}
                         </span>
                       ) : null}
                     </td>

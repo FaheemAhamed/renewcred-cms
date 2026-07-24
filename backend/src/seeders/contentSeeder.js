@@ -57,7 +57,7 @@ const seedContent = async () => {
               headers: ["Metric", "Q1 2026", "Q2 2026", "Variance"],
               rows: [
                 ["Average Credit Score", "742", "785", "+5.79%"],
-                ["Total Asset Under Management", "$14.2M", "$21.8M", "+53.52%"],
+                ["Total Asset Under Management", "₹14.2 Cr", "₹21.8 Cr", "+53.52%"],
                 ["Protocol Default Rate", "0.38%", "0.24%", "-36.84%"],
                 ["Active Verified Users", "18,400", "29,150", "+58.42%"],
               ],

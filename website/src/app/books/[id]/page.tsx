@@ -114,7 +114,7 @@ export default function BookDetailPage() {
                 </div>
                 <div>
                   <p className="text-[11px] font-bold uppercase text-slate-400">Price</p>
-                  <p className="text-base font-extrabold text-blue-600">${book.price}</p>
+                  <p className="text-base font-extrabold text-blue-600">₹{book.price?.toLocaleString('en-IN')}</p>
                 </div>
               </div>
 
