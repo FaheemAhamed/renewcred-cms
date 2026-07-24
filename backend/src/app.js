@@ -1,5 +1,6 @@
 import express from "express"; 
 import cors from "cors";
+import authRoutes from "./routes/authRoutes.js";
 
 const app = express(); 
 
@@ -12,6 +13,7 @@ app.use(express.json());
 //Parse URL - encoded form data
 app.use(express.urlencoded({extended:true}));
 
+app.use("/api/v1/auth",authRoutes);
 
 //Health Check Route
 app.get("/",(req,res) =>{
